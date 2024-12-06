@@ -12,6 +12,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property int    $add_id
  * @property int    $created_at
  * @property int    $updated_at
+ *
+ *
+ *  === Relationships ===
+ * @property-read \App\Models\Adds|null $add
+ * /
  */
 class AddTemplates extends Model
 {

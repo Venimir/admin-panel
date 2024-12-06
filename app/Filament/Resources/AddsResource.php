@@ -5,7 +5,6 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AddsResource\Pages;
 use App\Filament\Resources\AddsResource\RelationManagers;
 use App\Models\Adds;
-use App\Services\AddTemplateService;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -19,15 +18,18 @@ class AddsResource extends Resource
     protected static ?string $model = Adds::class;
 
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-computer-desktop';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')->required(),
-                Forms\Components\Textarea::make('description'),
-                Forms\Components\TextInput::make('url')->required(),
+               Forms\Components\Section::make()->schema([
+                   Forms\Components\TextInput::make('title')->unique(ignoreRecord: true)->required(),
+                   Forms\Components\Textarea::make('description'),
+                   Forms\Components\TextInput::make('url')->required(),
+                   Forms\Components\Checkbox::make('create-template')->label('Create Template From Add')
+               ])
             ]);
     }
 
@@ -35,10 +37,10 @@ class AddsResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn ::make('title')->searchable(),
+                Tables\Columns\TextColumn ::make('title')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('url'),
-                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('status')->sortable(),
             ])
             ->filters([
                 //
@@ -46,6 +48,7 @@ class AddsResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ViewAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -59,6 +62,11 @@ class AddsResource extends Resource
         return [
             //
         ];
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->previousUrl ?? $this->getResource()::getUrl('index');
     }
 
 

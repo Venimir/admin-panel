@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Adds extends Model
 {
+    public bool $createTemplate;
 
     /**
      * The database table used by the model.

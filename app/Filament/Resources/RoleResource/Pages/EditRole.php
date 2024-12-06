@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Filament\Resources\AddsResource\Pages;
+namespace App\Filament\Resources\RoleResource\Pages;
 
-use App\Filament\Resources\AddsResource;
+use App\Filament\Resources\RoleResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditAdds extends EditRecord
+class EditRole extends EditRecord
 {
-    protected static string $resource = AddsResource::class;
+    protected static string $resource = RoleResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make(),
             Actions\DeleteAction::make(),
         ];
     }

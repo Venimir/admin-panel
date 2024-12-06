@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Permission\Models\Role as ModelsRole;
 
 /**
  * @property int    $id
@@ -11,8 +12,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $guard_name
  * @property string $name
  */
-class Roles extends Model
+class Roles extends ModelsRole
 {
+    use HasFactory;
     /**
      * The database table used by the model.
      *

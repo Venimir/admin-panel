@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('add_templates', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('status');
-            $table->string('canva_url');
+            $table->string('canva_url')->nullable();
             $table->foreignId('add_id')->nullable();
             $table->timestamps();
         });

@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AddTemplatesResource\Pages;
 use App\Filament\Resources\AddTemplatesResource\RelationManagers;
 use App\Models\AddTemplates;
+use Filament\Actions\Action;
+use Filament\Actions\DeleteAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\Pages\Page;
 
 class AddTemplatesResource extends Resource
 {
@@ -23,9 +26,10 @@ class AddTemplatesResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')->required(),
+                Forms\Components\TextInput::make('title')->unique(ignoreRecord: true)->required(),
                 Forms\Components\Textarea::make('description'),
                 Forms\Components\TextInput::make('canva_url'),
+                Forms\Components\Select::make('Adds')
             ]);
     }
 
@@ -33,16 +37,17 @@ class AddTemplatesResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn ::make('title')->searchable(),
+                Tables\Columns\TextColumn ::make('title')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('canva_url'),
-                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('status')->sortable(),
                 Tables\Columns\TextColumn::make('add.title'),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
@@ -60,12 +65,16 @@ class AddTemplatesResource extends Resource
         ];
     }
 
+
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListAddTemplates::route('/'),
             'create' => Pages\CreateAddTemplates::route('/create'),
+            'view' => Pages\ViewAddTemplates::route('/{record}'),
             'edit' => Pages\EditAddTemplates::route('/{record}/edit'),
+//            'create-template' => Pages\CreateAddFromTemplate::route('/create-template'),
         ];
     }
 }

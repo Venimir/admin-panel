@@ -4,22 +4,16 @@ namespace App\Filament\Resources\AddTemplatesResource\Pages;
 
 use App\Filament\Resources\AddTemplatesResource;
 use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 
-class EditAddTemplates extends EditRecord
+class ViewAddTemplates extends ViewRecord
 {
     protected static string $resource = AddTemplatesResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make(),
-            Actions\DeleteAction::make(),
+            Actions\EditAction::make(),
         ];
-    }
-
-    protected function getRedirectUrl(): string
-    {
-        return $this->previousUrl ?? $this->getResource()::getUrl('index');
     }
 }

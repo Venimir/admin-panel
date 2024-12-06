@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Permission\Models\Permission as ModelsPermission;
 
 /**
  * @property int    $created_at
@@ -10,8 +11,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $guard_name
  * @property string $name
  */
-class Permissions extends Model
+class Permissions extends ModelsPermission
 {
+    use HasFactory;
     /**
      * The database table used by the model.
      *
@@ -41,7 +43,7 @@ class Permissions extends Model
      * @var array
      */
     protected $hidden = [
-        
+
     ];
 
     /**
