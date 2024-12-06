@@ -28,7 +28,7 @@ class AddTemplatesResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')->unique(ignoreRecord: true)->required(),
                 Forms\Components\Textarea::make('description'),
-                Forms\Components\TextInput::make('canva_url'),
+                Forms\Components\TextInput::make('canva_url')->activeUrl(),
                 Forms\Components\Select::make('Adds')
             ]);
     }

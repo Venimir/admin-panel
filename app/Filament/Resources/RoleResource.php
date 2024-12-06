@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources;
 use App\Filament\Resources\RoleResource\Pages;
-use App\Models\Roles;
+use App\Models\Role;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -11,7 +11,7 @@ use Filament\Tables\Table;
 
 class RoleResource extends Resource
 {
-    protected static ?string $model = Roles::class;
+    protected static ?string $model = Role::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-finger-print';
 

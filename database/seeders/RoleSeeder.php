@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Permissions;
-use App\Models\Roles;
+use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -19,10 +19,10 @@ class RoleSeeder extends Seeder
             [
                 'Super Admin' =>
                     [
-                        'View Adds', 'View Templates', 'View Users', 'View Roles', 'View Permissions',
-                        'Create Adds', 'Create Templates', 'Create Users', 'Create Roles', 'Create Permissions',
-                        'Update Adds', 'Update Templates', 'Update Users', 'Update Roles', 'Update Permissions',
-                        'Delete Adds', 'Delete Templates', 'Delete Users', 'Delete Roles', 'Delete Permissions',
+                        'View Adds', 'View Templates', 'View Users', 'View Role', 'View Permission',
+                        'Create Adds', 'Create Templates', 'Create Users', 'Create Role', 'Create Permission',
+                        'Update Adds', 'Update Templates', 'Update Users', 'Update Role', 'Update Permission',
+                        'Delete Adds', 'Delete Templates', 'Delete Users', 'Delete Role', 'Delete Permission',
                     ]
             ],
             [
@@ -51,12 +51,12 @@ class RoleSeeder extends Seeder
 
         foreach ($roles as $roleAndPermissions) {
             foreach ($roleAndPermissions as $roleName => $permissionNames) {
-                $role = Roles::create([
+                $role = Role::create([
                     'name' => $roleName,
                     'guard_name' => 'web'
                 ]);
 
-                $permissions = Permissions::query()->whereIn('name',  $permissionNames)->pluck('name', 'id');
+                $permissions = Permission::query()->whereIn('name',  $permissionNames)->pluck('name', 'id');
                 $role->syncPermissions($permissions);
             }
         }

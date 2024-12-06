@@ -15,7 +15,7 @@ class AddTemplatesPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('Super Admin');
+        return $user->hasRole(['Super Admin', 'Admin', 'Editor', 'Viewer']);
     }
 
     /**

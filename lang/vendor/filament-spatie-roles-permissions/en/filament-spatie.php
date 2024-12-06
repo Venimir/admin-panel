@@ -8,10 +8,10 @@ return [
     */
 
     'field.guard_name' => 'Guard Name',
-    'field.permissions_count' => 'Permissions Count',
+    'field.permissions_count' => 'Permission Count',
     'field.name' => 'Name',
-    'field.permissions' => 'Permissions',
-    'field.roles' => 'Roles',
+    'field.permissions' => 'Permission',
+    'field.roles' => 'Role',
     'field.role' => 'Role',
     'field.team' => 'Team',
     'field.models' => 'Models',
@@ -31,10 +31,10 @@ return [
     */
 
     'section.permission' => 'Permission',
-    'section.permissions' => 'Permissions',
+    'section.permissions' => 'Permission',
     'section.role' => 'Role',
-    'section.roles' => 'Roles',
-    'section.roles_and_permissions' => 'Roles and Permissions',
+    'section.roles' => 'Role',
+    'section.roles_and_permissions' => 'Role and Permission',
     'select-team' => 'Select a Team',
     'select-team-hint' => 'Leave blank for a global role',
     'section.users' => 'Users',

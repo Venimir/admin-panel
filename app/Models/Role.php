@@ -12,7 +12,7 @@ use Spatie\Permission\Models\Role as ModelsRole;
  * @property string $guard_name
  * @property string $name
  */
-class Roles extends ModelsRole
+class Role extends ModelsRole
 {
     use HasFactory;
     /**

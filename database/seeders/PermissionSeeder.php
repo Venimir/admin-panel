@@ -23,11 +23,11 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
-                'name'       => 'View Roles',
+                'name'       => 'View Role',
                 'guard_name' => 'web'
             ],
             [
-                'name'       => 'View Permissions',
+                'name'       => 'View Permission',
                 'guard_name' => 'web'
             ],
             [
@@ -43,11 +43,11 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
-                'name'       => 'Create Roles',
+                'name'       => 'Create Role',
                 'guard_name' => 'web'
             ],
             [
-                'name'       => 'Create Permissions',
+                'name'       => 'Create Permission',
                 'guard_name' => 'web'
             ],
             [
@@ -63,11 +63,11 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
-                'name'       => 'Update Roles',
+                'name'       => 'Update Role',
                 'guard_name' => 'web'
             ],
             [
-                'name'       => 'Update Permissions',
+                'name'       => 'Update Permission',
                 'guard_name' => 'web'
             ],
             [
@@ -83,11 +83,11 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
-                'name'       => 'Delete Roles',
+                'name'       => 'Delete Role',
                 'guard_name' => 'web'
             ],
             [
-                'name'       => 'Delete Permissions',
+                'name'       => 'Delete Permission',
                 'guard_name' => 'web'
             ],
             [

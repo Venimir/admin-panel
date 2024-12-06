@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Permissions;
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
@@ -10,6 +10,7 @@ use Illuminate\Auth\Access\Response;
 class PermissionPolicy
 {
     use HandlesAuthorization;
+
     /**
      * Determine whether the user can view any models.
      */
@@ -23,6 +24,9 @@ class PermissionPolicy
      */
     public function view(?User $user): bool
     {
+        if ($user === null) {
+            return false;
+        }
 
         return $user->can('View Permissions');
     }

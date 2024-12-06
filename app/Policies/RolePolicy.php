@@ -2,12 +2,15 @@
 
 namespace App\Policies;
 
-use App\Models\Roles;
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
 class RolePolicy
 {
+    use HandlesAuthorization;
+
     /**
      * Determine whether the user can view any models.
      */
@@ -25,7 +28,7 @@ class RolePolicy
             return false;
         }
 
-        return $user->can('View Roles');
+        return $user->can('View Role');
     }
 
     /**
@@ -33,7 +36,7 @@ class RolePolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('Create Roles');
+        return $user->can('Create Role');
     }
 
     /**
@@ -41,7 +44,7 @@ class RolePolicy
      */
     public function update(User $user): bool
     {
-        return $user->can('Update Roles');
+        return $user->can('Update Role');
     }
 
     /**
@@ -49,7 +52,7 @@ class RolePolicy
      */
     public function delete(User $user): bool
     {
-        return $user->can('Delete Roles');
+        return $user->can('Delete Role');
     }
 
     /**
@@ -65,6 +68,6 @@ class RolePolicy
      */
     public function forceDelete(User $user): bool
     {
-        return $user->can('Delete Roles');
+        return $user->can('Delete Role');
     }
 }

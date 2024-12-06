@@ -11,7 +11,7 @@ use Spatie\Permission\Models\Permission as ModelsPermission;
  * @property string $guard_name
  * @property string $name
  */
-class Permissions extends ModelsPermission
+class Permission extends ModelsPermission
 {
     use HasFactory;
     /**

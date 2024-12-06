@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AddsResource\Pages;
-use App\Filament\Resources\AddsResource\RelationManagers;
 use App\Models\Adds;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AddsResource extends Resource
 {
@@ -27,7 +24,7 @@ class AddsResource extends Resource
                Forms\Components\Section::make()->schema([
                    Forms\Components\TextInput::make('title')->unique(ignoreRecord: true)->required(),
                    Forms\Components\Textarea::make('description'),
-                   Forms\Components\TextInput::make('url')->required(),
+                   Forms\Components\TextInput::make('url')->required()->activeUrl(),
                    Forms\Components\Checkbox::make('create-template')->label('Create Template From Add')
                ])
             ]);

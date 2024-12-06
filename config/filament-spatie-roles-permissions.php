@@ -142,7 +142,7 @@ return [
         'permission_affixes' => [
 
             /*
-             * Permissions Aligned with Policies.
+             * Permission Aligned with Policies.
              * DO NOT change the keys unless the genericPolicy.stub is published and altered accordingly
              */
             'viewAnyPermission' => 'view-any',
@@ -172,7 +172,7 @@ return [
         'permission_name' => 'return $permissionAffix . \' \' . $modelName;',
 
         /*
-         * Permissions will be generated for the models associated with the respective Filament Resources
+         * Permission will be generated for the models associated with the respective Filament Resources
          */
         'discover_models_through_filament_resources' => false,
 
