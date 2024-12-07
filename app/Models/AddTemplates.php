@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * @property int $id
  * @property string $canva_url
  * @property string $description
  * @property string $status

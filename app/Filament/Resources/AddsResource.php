@@ -40,7 +40,12 @@ class AddsResource extends Resource
                 Tables\Columns\TextColumn::make('status')->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('status')
+                    ->options([
+                        'completed' => 'Completed',
+                        'in-progress' => 'In-Progress',
+                        'pending' => 'Pending',
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

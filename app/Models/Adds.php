@@ -6,12 +6,13 @@ use App\Services\AddTemplateService;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int    $created_at
- * @property int    $updated_at
+ * @property int $id
  * @property string $description
  * @property string $status
  * @property string $title
  * @property string $url
+ * @property int $created_at
+ * @property int $updated_at
  */
 class Adds extends Model
 {

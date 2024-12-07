@@ -13,7 +13,7 @@ class AddTemplateService
                'title' => $add->title,
                'description' => $add->description,
                'status' => 'draft',
-               'canva_url' => '',
+               'canva_url' => $add->url,
                'add_id' => $add->id
            ]);
     }

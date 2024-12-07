@@ -44,7 +44,12 @@ class AddTemplatesResource extends Resource
                 Tables\Columns\TextColumn::make('add.title'),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('status')
+                    ->options([
+                        'draft' => 'Draft',
+                        'active' => 'Active ',
+                        'archived' => 'Archived',
+                    ]),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -74,7 +79,6 @@ class AddTemplatesResource extends Resource
             'create' => Pages\CreateAddTemplates::route('/create'),
             'view' => Pages\ViewAddTemplates::route('/{record}'),
             'edit' => Pages\EditAddTemplates::route('/{record}/edit'),
-//            'create-template' => Pages\CreateAddFromTemplate::route('/create-template'),
         ];
     }
 }
