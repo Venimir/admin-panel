@@ -13,10 +13,12 @@ class ChurnRateStats extends BaseWidget
 
     protected function getStats(): array
     {
-        $churnRate = Subscriber::getChurnRate();
-        $totalSubscribers = Subscriber::count();
-        $activeSubscribers = Subscriber::where('status', 'active')->count();
-        $churnedSubscribers = Subscriber::where('status', 'churned')->count();
+        $subscribers = new Subscriber();
+        $subscribers->setPastTimePeriod(30);
+        $churnRate = $subscribers->getChurnRate();
+        $totalSubscribers = $subscribers->getTotalSubscribers();
+        $activeSubscribers = $subscribers->getActiveSubscribers();
+        $allChurnedSubscribers = $subscribers->getAllChurnedSubscribers();
 
         return [
             Stat::make('Churn Rate', number_format($churnRate, 2) . '%')
@@ -32,6 +34,11 @@ class ChurnRateStats extends BaseWidget
 
             Stat::make('Active Subscribers', $activeSubscribers)
                 ->description('Current')
+                ->descriptionIcon('heroicon-m-user')
+                ->color('success'),
+
+            Stat::make('Churned Subscribers', $allChurnedSubscribers)
+                ->description('All Current')
                 ->descriptionIcon('heroicon-m-user')
                 ->color('success'),
         ];

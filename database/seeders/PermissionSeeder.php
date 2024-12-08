@@ -35,6 +35,10 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
+                'name'       => 'View Subscribers',
+                'guard_name' => 'web'
+            ],
+            [
                 'name'       => 'Create Adds',
                 'guard_name' => 'web'
             ],

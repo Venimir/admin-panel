@@ -114,14 +114,14 @@ class SubscriberResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -133,6 +133,6 @@ class SubscriberResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::where('status', 'active')->count();
+        return static::getModel()::query()->where('status', 'active')->count();
     }
 }

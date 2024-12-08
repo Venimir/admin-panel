@@ -19,7 +19,7 @@ class RoleSeeder extends Seeder
             [
                 'Super Admin' =>
                     [
-                        'View Adds', 'View Templates', 'View Users', 'View Role', 'View Permission',
+                        'View Adds', 'View Templates', 'View Users', 'View Role', 'View Permission', 'View Subscribers',
                         'Create Adds', 'Create Templates', 'Create Users', 'Create Role', 'Create Permission',
                         'Update Adds', 'Update Templates', 'Update Users', 'Update Role', 'Update Permission',
                         'Delete Adds', 'Delete Templates', 'Delete Users', 'Delete Role', 'Delete Permission',
@@ -28,7 +28,7 @@ class RoleSeeder extends Seeder
             [
                 'Admin' =>
                     [
-                        'View Adds', 'View Templates', 'View Users',
+                        'View Adds', 'View Templates', 'View Users', 'View Subscribers',
                         'Create Adds', 'Create Templates', 'Create Users',
                         'Update Adds', 'Update Templates', 'Update Users',
                         'Delete Adds', 'Delete Templates', 'Delete Users',
@@ -37,14 +37,14 @@ class RoleSeeder extends Seeder
             [
                 'Editor' =>
                     [
+                        'View Adds', 'View Templates', 'View Users', 'View Subscribers',
                         'Create Adds', 'Create Templates',
-                        'View Adds', 'View Templates', 'View Users',
                         'Update Adds', 'Update Templates',
                     ]
             ],
             [
                 'Viewer' => [
-                    'View Adds', 'View Templates',
+                    'View Adds', 'View Templates', 'View Subscribers',
                 ]
             ],
         ];

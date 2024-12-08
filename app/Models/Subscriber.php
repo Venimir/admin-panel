@@ -9,6 +9,18 @@ class Subscriber extends Model
 {
     use HasFactory;
 
+    /** @var int $numberOfDays Past period of time in days */
+    private int $numberOfDays = 0;
+
+    /**
+     * @param int $numberOfDays
+     * @return void
+     */
+    public function setPastTimePeriod(int $numberOfDays) : void
+    {
+        $this->numberOfDays = $numberOfDays;
+    }
+
     protected $fillable = [
         'email',
         'status',
@@ -21,38 +33,82 @@ class Subscriber extends Model
         'churned_at' => 'datetime',
     ];
 
-    public static function getChurnRate(): float
+    /**
+     * @return \Illuminate\Support\Carbon
+     */
+    private function getPastDaysAgo()
     {
-        $thirtyDaysAgo = now()->subDays(30);
-        
-        // Get the number of active subscribers 30 days ago
-        $activeSubscribers = static::where('subscribed_at', '<=', $thirtyDaysAgo)
-            ->where(function ($query) use ($thirtyDaysAgo) {
-                $query->where('status', 'active')
-                    ->orWhere(function ($q) use ($thirtyDaysAgo) {
-                        $q->where('status', 'churned')
-                            ->where('churned_at', '>', $thirtyDaysAgo);
-                    });
-            })
+        return now()->subDays($this->numberOfDays);
+    }
+
+    public function getActiveSubscribers()
+    {
+      return self::query()->where('status', 'active')->count();
+    }
+
+    public function getActiveSubscribersForPastPeriodOfTime()
+    {
+        $pastDaysAgo = $this->getPastDaysAgo();
+
+        return self::where('subscribed_at', '<=', $pastDaysAgo)
+                ->where(function ($query) use ($pastDaysAgo) {
+                    $query->where('status', 'active')
+                        ->orWhere(function ($q) use ($pastDaysAgo) {
+                            $q->where('status', 'churned')
+                                ->where('churned_at', '>', $pastDaysAgo);
+                        });
+                })
+                ->count();
+    }
+
+    public function getNewSubscribers()
+    {
+        $pastDaysAgo = $this->getPastDaysAgo();
+
+        return self::where('subscribed_at', '>', $pastDaysAgo)
             ->count();
+    }
+
+    public function getChurnedSubscribers()
+    {
+        $pastDaysAgo = $this->getPastDaysAgo();
+
+        return self::where('status', 'churned')
+        ->where('churned_at', '>', $pastDaysAgo)
+        ->count();
+    }
+
+    public function getAllChurnedSubscribers()
+    {
+       return self::where('status', 'churned')->count();
+    }
+
+
+    public function getTotalSubscribers() : int
+    {
+        return self::query()->count();
+    }
+
+    public function getChurnRate(): float
+    {
+        // Get the number of active subscribers 30 days ago
+        $activeSubscribers = $this->getActiveSubscribersForPastPeriodOfTime();
 
         // Get new subscribers in the last 30 days
-        $newSubscribers = static::where('subscribed_at', '>', $thirtyDaysAgo)
-            ->count();
+        $newSubscribers = $this->getNewSubscribers();
 
         // Get churned subscribers in the last 30 days
-        $churnedSubscribers = static::where('status', 'churned')
-            ->where('churned_at', '>', $thirtyDaysAgo)
-            ->count();
+        $churnedSubscribers = $this->getChurnedSubscribers();
 
         // Calculate total subscribers (active 30 days ago + new subscribers)
-        $totalSubscribers = $activeSubscribers + $newSubscribers;
+        $totalActiveSubscribers = $activeSubscribers + $newSubscribers;
 
         // Calculate churn rate
-        if ($totalSubscribers === 0) {
+        if ($totalActiveSubscribers === 0) {
             return 0.0;
         }
 
-        return round(($churnedSubscribers / $totalSubscribers) * 100, 2);
+        return round(($churnedSubscribers / $totalActiveSubscribers) * 100, 2);
     }
+
 }

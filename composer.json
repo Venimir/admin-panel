@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "althinect/filament-spatie-roles-permissions": "^2.2",
+        "arbermustafa/filament-google-charts-widgets": "^2.0",
         "filament/filament": "^3.2",
         "illuminate/config": "*",
         "illuminate/console": "*",

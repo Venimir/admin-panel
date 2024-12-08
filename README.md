@@ -37,7 +37,7 @@ A powerful admin panel built with Laravel and Filament, featuring role-based acc
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone <https://github.com/Venimir/admin-panel.git>
 cd super-admin-panel
 ```
 
@@ -80,9 +80,21 @@ php artisan serve
 
 After seeding, the following users are available:
 
-1. **Super Admin**
-   - Email: admin@admin.com
-   - Password: password
+1**Admin**
+    - Email: superadmin@gmail.com
+    - Password: superadmin
+
+2. **Admin**
+    - Email: admin@gmail.com
+    - Password: admin
+
+3. **Editor**
+    - Email: editor@gmail.com
+    - Password: password
+
+4. **Viewer**
+    - Email: viewer@gmail.com
+    - Password: password
 
 
 ## Project Structure
