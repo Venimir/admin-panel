@@ -80,7 +80,7 @@ php artisan serve
 
 After seeding, the following users are available:
 
-1**Admin**
+1. **Super Admin**
     - Email: superadmin@gmail.com
     - Password: superadmin
 
