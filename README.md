@@ -38,7 +38,7 @@ A powerful admin panel built with Laravel and Filament, featuring role-based acc
 1. Clone the repository:
 ```bash
 git clone <https://github.com/Venimir/admin-panel.git>
-cd super-admin-panel
+cd admin-panel
 ```
 
 2. Install PHP dependencies:
