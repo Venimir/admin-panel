@@ -5,7 +5,7 @@ namespace App\Filament\Widgets;
 use App\Models\Subscriber;
 use ArberMustafa\FilamentGoogleCharts\Widgets\PieChartWidget;
 
-class ChurnRatePieChart extends PieChartWidget
+class ChurnPieChart extends PieChartWidget
 {
     protected static ?int $sort = 1;
 
@@ -32,7 +32,7 @@ class ChurnRatePieChart extends PieChartWidget
 
     protected function getHeading(): string
     {
-        return 'Pie chart';
+        return 'Churn Statistics';
     }
 
     protected function getData(): array
